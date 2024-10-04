@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  Copyright (C) 2022-2024 CJH.  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>倒计时小工具</displayName>
+  <description>倒计时小工具</description>
+  <resources>
+    <stringTable>
+      <string id="CountDownControl">倒计时小工具</string>
+      <string id="CountDownControlDisbFu">禁用倒计时小工具的自定义功能</string>
+      <string id="CountDownControlDisbFu_Help">此策略控制倒计时小工具自定义功能是否被禁用。
+
+注意：命令行的内容要优先于策略设置，在计算机配置设置的策略优先级高于用户配置里设置的策略，计算机配置里的策略对所有用户有效。倒计时小工具版本须在1.0.0.24101以上才支持本策略。</string>
+      <string id="CountDownControlDisbFuTip">隐藏倒计时小工具应用策略或以特殊模式（安全模式除外）启动后的横幅提示</string>
+      <string id="CountDownControlDisbFuTip_Help">此策略控制倒计时小工具应用策略或以特殊模式（安全模式除外）启动后的横幅提示是否显示。
+
+注意：命令行的内容要优先于策略设置，在计算机配置设置的策略优先级高于用户配置里设置的策略，计算机配置里的策略对所有用户有效。倒计时小工具版本须在1.0.0.24101以上才支持本策略。</string>
+ <string id="CountDownControlNoSaveProfile">不保存设置</string>
+      <string id="CountDownControlNoSaveProfile_Help">不将你的设置保存到注册表。
+
+注意：命令行的内容要优先于策略设置，在计算机配置设置的策略优先级高于用户配置里设置的策略，计算机配置里的策略对所有用户有效。倒计时小工具版本须在1.0.0.24101以上才支持本策略。</string>
+ <string id="CountDownControlNoProfile">不使用设置文件</string>
+      <string id="CountDownControlNoProfile_Help">启用后将默认加载默认设置，并不保存你的设置。
+
+注意：命令行的内容要优先于策略设置，在计算机配置设置的策略优先级高于用户配置里设置的策略，计算机配置里的策略对所有用户有效。倒计时小工具版本须在1.0.0.24101以上才支持本策略。</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

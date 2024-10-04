@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  Copyright (C) 2022-2024 CJH.  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="CountDownControl" namespace="CJH.Policies.CountDownControl" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <!--  <category name="CJH" displayName="$(string.CJH)"/> -->
+    <category name="CountDownControl" displayName="$(string.CountDownControl)"/>
+      <!--  <parentCategory ref="" /> 
+    </category> -->
+  </categories>
+  <policies>
+    <policy name="CountDownControlDisbFu" class="Both" displayName="$(string.CountDownControlDisbFu)" explainText="$(string.CountDownControlDisbFu_Help)" key="Software\Policies\CJH\CountDownControl" valueName="DisableFeatures">
+      <parentCategory ref="CountDownControl" />
+	  <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="CountDownControlDisbFuTip" class="Both" displayName="$(string.CountDownControlDisbFuTip)" explainText="$(string.CountDownControlDisbFuTip_Help)" key="Software\Policies\CJH\CountDownControl" valueName="DisableFeaturesTip">
+      <parentCategory ref="CountDownControl" />
+	  <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+	<policy name="CountDownControlNoSaveProfile" class="Both" displayName="$(string.CountDownControlNoSaveProfile)" explainText="$(string.CountDownControlNoSaveProfile_Help)" key="Software\Policies\CJH\CountDownControl" valueName="NoSaveProfile">
+      <parentCategory ref="CountDownControl" />
+	  <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+	<policy name="CountDownControlNoProfile" class="Both" displayName="$(string.CountDownControlNoProfile)" explainText="$(string.CountDownControlNoProfile_Help)" key="Software\Policies\CJH\CountDownControl" valueName="NoProfile">
+      <parentCategory ref="CountDownControl" />
+	  <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+	
+  </policies>
+</policyDefinitions>
