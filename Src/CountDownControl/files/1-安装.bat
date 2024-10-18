@@ -111,7 +111,7 @@ Reg delete HKLM\Software\Microsoft\Windows\CurrentVersion\run /v CountDownContro
 if exist "%programfiles%\CJH\CountDownControl\CountDownControl.exe" del /q "%programfiles%\CJH\CountDownControl\CountDownControl.exe"
 
 if not exist "%programfiles%\CJH\CountDownControl" md "%programfiles%\CJH\CountDownControl"
-copy "%~dp0CountDownControl.exe" "%programfiles%\CJH\CountDownControl\CountDownControl.exe"
+copy /y "%~dp0CountDownControl.exe" "%programfiles%\CJH\CountDownControl\CountDownControl.exe"
 echo.
 choice /C YN /T 5 /D Y /M "是(Y)否(N)要添加自动启动项（5秒后自动选择Y）"
 if errorlevel 1 set aa=1
@@ -171,8 +171,8 @@ if exist "%programfiles%\CJH\CountDownControl\x86\CountDownControl.exe" del /q "
 
 if not exist "%programfiles%\CJH\CountDownControl" md "%programfiles%\CJH\CountDownControl"
 if not exist "%programfiles%\CJH\CountDownControl\x86" md "%programfiles%\CJH\CountDownControl\x86"
-copy "%~dp0CountDownControl64.exe" "%programfiles%\CJH\CountDownControl\CountDownControl.exe"
-copy "%~dp0CountDownControl.exe" "%programfiles%\CJH\CountDownControl\x86\CountDownControl.exe"
+copy /y "%~dp0CountDownControl64.exe" "%programfiles%\CJH\CountDownControl\CountDownControl.exe"
+copy /y "%~dp0CountDownControl.exe" "%programfiles%\CJH\CountDownControl\x86\CountDownControl.exe"
 echo.
 choice /C YN /T 5 /D Y /M "是(Y)否(N)要添加自动启动项（5秒后自动选择Y）"
 if errorlevel 1 set aa=1

@@ -106,7 +106,7 @@ Reg delete HKLM\Software\Microsoft\Windows\CurrentVersion\run /v CountDownContro
 del /q "%windir%\PolicyDefinitions\CountDownControl.admx"
 del /q "%windir%\PolicyDefinitions\zh-CN\CountDownControl.adml"
 del /q "%windir%\PolicyDefinitions\en-US\CountDownControl.adml"
-del /q "%windir%\inf\CountDownControl.adm" /y
+del /q "%windir%\inf\CountDownControl.adm"
 ::Reg add "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Group Policy" /v OnlyUseLocalAdminFiles /t REG_DWORD /d 0 /f
 ::Reg delete "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Group Policy" /v OnlyUseLocalAdminFiles /f
 
@@ -147,7 +147,7 @@ Reg delete HKLM\Software\Microsoft\Windows\CurrentVersion\run /v CountDownContro
 del /q "%windir%\PolicyDefinitions\CountDownControl.admx"
 del /q "%windir%\PolicyDefinitions\zh-CN\CountDownControl.adml"
 del /q "%windir%\PolicyDefinitions\en-US\CountDownControl.adml"
-del /q "%windir%\inf\CountDownControl.adm" /y
+del /q "%windir%\inf\CountDownControl.adm"
 ::Reg add "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Group Policy" /v OnlyUseLocalAdminFiles /t REG_DWORD /d 0 /f
 ::Reg delete "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Group Policy" /v OnlyUseLocalAdminFiles /f
 
