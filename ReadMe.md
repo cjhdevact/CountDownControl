@@ -1,4 +1,4 @@
-<h1 align="center">
+<h1 align="center" style="color: blue;">
   CountDownControl - 倒计时小工具
 </h1>
 
