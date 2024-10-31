@@ -101,57 +101,62 @@ Public Class Form1
     'Public SetMinute As Integer
     'Public SetSecond As Integer
 
-    Function YearToDay(ByVal Years As Integer)
-        Dim MyY As Integer
-        If Years / 4 - Int(Years / 4) = 0 Then
-            MyY = Years * 366 '如果是闰年
-        Else
-            MyY = Years * 365 '如果是平年
-        End If
-        Return MyY
-    End Function
+    '/////////////////////////////////////////////////////////////////////////////
+    '    手动转换天数函数（已废弃）
+    '/////////////////////////////////////////////////////////////////////////////
+    'Function YearToDay(ByVal Years As Integer)
+    '    Dim MyY As Integer
+    '    If Years / 4 - Int(Years / 4) = 0 Then
+    '        MyY = Years * 366 '如果是闰年
+    '    Else
+    '        MyY = Years * 365 '如果是平年
+    '    End If
+    '    Return MyY
+    'End Function
 
-    Function MonthToDay(ByVal Year As Integer, ByVal Months As Integer)
-        Dim MyM As Integer
-        If Months / 2 - Int(Months / 2) > 0 Then '月份为单数
-            If Months < 2 Then '小于2月份
-                MyM = Months * 30 + Int(Months / 2 + 1) * 1
-            ElseIf Months >= 2 Then '大于2月份
-                If Months <= 7 Then '大于2月份且小于等于7月
-                    If Year / 4 - Int(Year / 4) = 0 Then '如果是闰年
-                        MyM = Months * 30 + Int(Months / 2 + 1) * 1 - 2
-                    Else
-                        MyM = Months * 30 + Int(Months / 2 + 1) * 1 - 3 '如果是平年
-                    End If
-                Else '大于2月份且大于7月
-                    If Year / 4 - Int(Year / 4) = 0 Then
-                        MyM = Months * 30 + 4 - 2 + Int((Months - 7) / 2) * 1 '如果是闰年
-                    Else
-                        MyM = Months * 30 + 4 - 3 + Int((Months - 7) / 2) * 1 '如果是平年
-                    End If
-                End If
-            End If
-        Else '月份为双数
-            If Months < 2 Then '小于2月份
-                MyM = Months * 30 + Int(Months / 2) * 1
-            ElseIf Months >= 2 Then '大于2月份
-                If Months <= 7 Then '大于2月份且小于等于7月
-                    If Year / 4 - Int(Year / 4) = 0 Then '如果是闰年
-                        MyM = Months * 30 + Int(Months / 2) * 1 - 2
-                    Else
-                        MyM = Months * 30 + Int(Months / 2) * 1 - 3 '如果是平年
-                    End If
-                Else '大于2月份且大于7月
-                    If Year / 4 - Int(Year / 4) = 0 Then
-                        MyM = Months * 30 + 4 - 2 + Int((Months - 7) / 2 + 1) * 1 '如果是闰年
-                    Else
-                        MyM = Months * 30 + 4 - 3 + Int((Months - 7) / 2 + 1) * 1 '如果是平年
-                    End If
-                End If
-            End If
-        End If
-        Return MyM
-    End Function
+    'Function MonthToDay(ByVal Year As Integer, ByVal Months As Integer)
+    '    Dim MyM As Integer
+    '    If Months / 2 - Int(Months / 2) > 0 Then '月份为单数
+    '        If Months < 2 Then '小于2月份
+    '            MyM = Months * 30 + Int(Months / 2 + 1) * 1
+    '        ElseIf Months >= 2 Then '大于2月份
+    '            If Months <= 7 Then '大于2月份且小于等于7月
+    '                If Year / 4 - Int(Year / 4) = 0 Then '如果是闰年
+    '                    MyM = Months * 30 + Int(Months / 2 + 1) * 1 - 2
+    '                Else
+    '                    MyM = Months * 30 + Int(Months / 2 + 1) * 1 - 3 '如果是平年
+    '                End If
+    '            Else '大于2月份且大于7月
+    '                If Year / 4 - Int(Year / 4) = 0 Then
+    '                    MyM = Months * 30 + 4 - 2 + Int((Months - 7) / 2) * 1 '如果是闰年
+    '                Else
+    '                    MyM = Months * 30 + 4 - 3 + Int((Months - 7) / 2) * 1 '如果是平年
+    '                End If
+    '            End If
+    '        End If
+    '    Else '月份为双数
+    '        If Months < 2 Then '小于2月份
+    '            MyM = Months * 30 + Int(Months / 2) * 1
+    '        ElseIf Months >= 2 Then '大于2月份
+    '            If Months <= 7 Then '大于2月份且小于等于7月
+    '                If Year / 4 - Int(Year / 4) = 0 Then '如果是闰年
+    '                    MyM = Months * 30 + Int(Months / 2) * 1 - 2
+    '                Else
+    '                    MyM = Months * 30 + Int(Months / 2) * 1 - 3 '如果是平年
+    '                End If
+    '            Else '大于2月份且大于7月
+    '                If Year / 4 - Int(Year / 4) = 0 Then
+    '                    MyM = Months * 30 + 4 - 2 + Int((Months - 7) / 2 + 1) * 1 '如果是闰年
+    '                Else
+    '                    MyM = Months * 30 + 4 - 3 + Int((Months - 7) / 2 + 1) * 1 '如果是平年
+    '                End If
+    '            End If
+    '        End If
+    '    End If
+    '    Return MyM
+    'End Function
+    '/////////////////////////////////////////////////////////////////////////////
+    '/////////////////////////////////////////////////////////////////////////////
 
     'Function DayToMonth(ByVal Days As Integer)
     '    Dim MyM As Integer
@@ -167,121 +172,145 @@ Public Class Form1
     '    MyM = Int(Days / 365)
     '    Return MyM
     'End Function
+    '/////////////////////////////////////////////////////////////////////////////
+    '    手动计算天数函数（已废弃）
+    '/////////////////////////////////////////////////////////////////////////////
+    'Dim CurYear As Integer
+    'Dim CurMon As Integer
+    'Dim CurDay As Integer
+    'Dim CurHour As Integer
+    'Dim CurMin As Integer
+    'Dim CurSec As Integer
+    '        CurYear = SetDate.Year 'Format(SetDate, "yyyy")
+    '        CurMon = SetDate.Month 'Format(SetDate, "%M")
+    '        CurDay = SetDate.Second 'Format(SetDate, "%d")
+    '        CurHour = SetDate.Hour 'SetHour
+    '        CurMin = SetDate.Minute 'SetMinute
+    '        CurSec = SetDate.Second 'SetSecond
+
+    'Dim NowYear As Integer
+    'Dim NowMon As Integer
+    'Dim NowDay As Integer
+    'Dim NowHour As Integer
+    'Dim NowMin As Integer
+    'Dim NowSec As Integer
+    '        NowYear = Format(Now, "yyyy")
+    '        NowMon = Format(Now, "%M")
+    '        NowDay = Format(Now, "%d")
+    '        NowHour = Format(Now, "%H")
+    '        NowMin = Format(Now, "%m")
+    '        NowSec = Format(Now, "%s")
+
+    'Dim ShowYear As Integer
+    '        ShowYear = YearToDay(CurYear - NowYear)
+    ''年转化为天数
+    ''Dim CurYearToDay As Integer
+    ''CurYearToDay = YearToDay(CurYear - 1)
+    '''月份转化为天数
+    ''Dim CurMonToDay As Integer
+    ''CurMonToDay = MonthToDay(CurYear, CurMon - 1)
+    'Dim AllDays As Int64
+    ''AllDays = CurMonToDay + CurDay
+    '        AllDays = SetDate.DayOfYear
+    ''年转化为天数
+    ''Dim NowYearToDay As Integer
+    ''NowYearToDay = YearToDay(NowYear - 1)
+    ''月份转化为天数
+    'Dim NowMonToDay As Integer
+    '        NowMonToDay = MonthToDay(NowYear, NowMon - 1)
+    'Dim NowAllDays As Int64
+    '        NowAllDays = NowMonToDay + NowDay
+    ''MsgBox(CurMon & " " & CurMonToDay & " " & NowMonToDay & " " & CurMonToDay - NowMonToDay)
+    ''Dim AllSecs As Int64
+    ''AllSecs = AllSecs * 24 * 60 * 60 + CurHour * 60 * 60 + CurMin * 60 + CurSec
+    ''MsgBox(AllSecs)
+    ''Dim ShowYear As Integer
+    ''Dim ShowMon As Integer
+    'Dim ShowDay As Integer
+    'Dim ShowHour As Integer
+    'Dim ShowMin As Integer
+    'Dim ShowSec As Integer
+    '        ShowHour = CurHour - NowHour
+    '        ShowMin = CurMin - NowMin
+    '        ShowSec = CurSec - NowSec
+    '        ShowDay = AllDays - NowAllDays + ShowYear - 1
+    '        If ShowSec < 0 Then
+    '            If ShowMin < 0 Then
+    '                If ShowHour < 0 Then
+    '                    If Not AllDays < 0 Then
+    '                        ShowDay = ShowDay - 1
+    '                        ShowHour = ShowHour + 23
+    '                        ShowMin = ShowMin + 59
+    '                        ShowSec = ShowSec + 60
+    '                    End If
+    '                Else
+    '                    ShowHour = ShowHour - 1
+    '                    ShowMin = ShowMin + 59
+    '                    ShowSec = ShowSec + 60
+    '                End If
+    '            Else
+    '                ShowMin = ShowMin - 1
+    '                ShowSec = ShowSec + 60
+    '            End If
+    '        End If
+    '        If ShowMin < 0 Then
+    '            If ShowHour < 0 Then
+    '                If Not AllDays < 0 Then
+    '                    ShowDay = ShowDay - 1
+    '                    ShowHour = ShowHour + 23
+    '                    ShowMin = ShowMin + 60
+    '                End If
+    '            Else
+    '                ShowHour = ShowHour - 1
+    '                ShowMin = ShowMin + 60
+    '            End If
+    '        End If
+    '        If ShowHour < 0 Then
+    '            If Not ShowDay < 0 Then
+    '                ShowDay = ShowDay - 1
+    '                ShowHour = ShowHour + 24
+    '            End If
+    '        End If
+    ''防止时间溢出
+    '        If ShowDay < 0 Then
+    '            ShowDay = 0
+    '            ShowHour = 0
+    '            ShowMin = 0
+    '            ShowSec = 0
+    '        End If
+
+    ''ShowYear = DayToYears(AllDays) - DayToYears(NowAllDays)
+    ''ShowMon = DayToMonth(AllDays - DayToYears(AllDays) * 365) - DayToYears(NowAllDays - DayToYears(NowAllDays) * 365)
+    ''ShowDay = (AllDays - DayToYears(AllDays) * 365 - DayToMonth(AllDays - DayToYears(AllDays) * 365) * 30) - (NowAllDays - DayToYears(NowAllDays) * 365 - DayToMonth(NowAllDays - DayToYears(NowAllDays) * 365) * 30)
+
+    ''ShowYear = DayToYears(AllDays)
+    'Dim ShowText As String
+    '        ShowText = TimeF
+    ''ShowText = Replace(ShowText, "yyyy", ShowYear)
+    ''ShowText = Replace(ShowText, "%M", ShowMon)
+    '        ShowText = Replace(ShowText, "%d", ShowDay)
+    '        ShowText = Replace(ShowText, "%H", ShowHour)
+    '        ShowText = Replace(ShowText, "%m", ShowMin)
+    '        ShowText = Replace(ShowText, "%s", ShowSec)
+    '/////////////////////////////////////////////////////////////////////////////
+    '/////////////////////////////////////////////////////////////////////////////
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
         Try
-            Dim CurYear As Integer
-            Dim CurMon As Integer
-            Dim CurDay As Integer
-            Dim CurHour As Integer
-            Dim CurMin As Integer
-            Dim CurSec As Integer
-            CurYear = SetDate.Year 'Format(SetDate, "yyyy")
-            CurMon = SetDate.Month 'Format(SetDate, "%M")
-            CurDay = SetDate.Second 'Format(SetDate, "%d")
-            CurHour = SetDate.Hour 'SetHour
-            CurMin = SetDate.Minute 'SetMinute
-            CurSec = SetDate.Second 'SetSecond
 
-            Dim NowYear As Integer
-            Dim NowMon As Integer
-            Dim NowDay As Integer
-            Dim NowHour As Integer
-            Dim NowMin As Integer
-            Dim NowSec As Integer
-            NowYear = Format(Now, "yyyy")
-            NowMon = Format(Now, "%M")
-            NowDay = Format(Now, "%d")
-            NowHour = Format(Now, "%H")
-            NowMin = Format(Now, "%m")
-            NowSec = Format(Now, "%s")
+            Dim SpTime As TimeSpan
+            SpTime = SetDate - Now
 
-            Dim ShowYear As Integer
-            ShowYear = YearToDay(CurYear - NowYear)
-            '年转化为天数
-            'Dim CurYearToDay As Integer
-            'CurYearToDay = YearToDay(CurYear - 1)
-            ''月份转化为天数
-            'Dim CurMonToDay As Integer
-            'CurMonToDay = MonthToDay(CurYear, CurMon - 1)
-            Dim AllDays As Int64
-            'AllDays = CurMonToDay + CurDay
-            AllDays = SetDate.DayOfYear
-            '年转化为天数
-            'Dim NowYearToDay As Integer
-            'NowYearToDay = YearToDay(NowYear - 1)
-            '月份转化为天数
-            Dim NowMonToDay As Integer
-            NowMonToDay = MonthToDay(NowYear, NowMon - 1)
-            Dim NowAllDays As Int64
-            NowAllDays = NowMonToDay + NowDay
-            'MsgBox(CurMon & " " & CurMonToDay & " " & NowMonToDay & " " & CurMonToDay - NowMonToDay)
-            'Dim AllSecs As Int64
-            'AllSecs = AllSecs * 24 * 60 * 60 + CurHour * 60 * 60 + CurMin * 60 + CurSec
-            'MsgBox(AllSecs)
-            'Dim ShowYear As Integer
-            'Dim ShowMon As Integer
-            Dim ShowDay As Integer
-            Dim ShowHour As Integer
-            Dim ShowMin As Integer
-            Dim ShowSec As Integer
-            ShowHour = CurHour - NowHour
-            ShowMin = CurMin - NowMin
-            ShowSec = CurSec - NowSec
-            ShowDay = AllDays - NowAllDays + ShowYear
-            If ShowSec < 0 Then
-                If ShowMin < 0 Then
-                    If ShowHour < 0 Then
-                        If Not AllDays < 0 Then
-                            ShowDay = ShowDay - 1
-                            ShowHour = ShowHour + 23
-                            ShowMin = ShowMin + 59
-                            ShowSec = ShowSec + 60
-                        End If
-                    Else
-                        ShowHour = ShowHour - 1
-                        ShowMin = ShowMin + 59
-                        ShowSec = ShowSec + 60
-                    End If
-                Else
-                    ShowMin = ShowMin - 1
-                    ShowSec = ShowSec + 60
-                End If
-            End If
-            If ShowMin < 0 Then
-                If ShowHour < 0 Then
-                    If Not AllDays < 0 Then
-                        ShowDay = ShowDay - 1
-                        ShowHour = ShowHour + 23
-                        ShowMin = ShowMin + 60
-                    End If
-                Else
-                    ShowHour = ShowHour - 1
-                    ShowMin = ShowMin + 60
-                End If
-            End If
-            If ShowHour < 0 Then
-                If Not ShowDay < 0 Then
-                    ShowDay = ShowDay - 1
-                    ShowHour = ShowHour + 24
-                End If
-            End If
-
-            'ShowYear = DayToYears(AllDays) - DayToYears(NowAllDays)
-            'ShowMon = DayToMonth(AllDays - DayToYears(AllDays) * 365) - DayToYears(NowAllDays - DayToYears(NowAllDays) * 365)
-            'ShowDay = (AllDays - DayToYears(AllDays) * 365 - DayToMonth(AllDays - DayToYears(AllDays) * 365) * 30) - (NowAllDays - DayToYears(NowAllDays) * 365 - DayToMonth(NowAllDays - DayToYears(NowAllDays) * 365) * 30)
-
-            'ShowYear = DayToYears(AllDays)
             Dim ShowText As String
             ShowText = TimeF
-            'ShowText = Replace(ShowText, "yyyy", ShowYear)
-            'ShowText = Replace(ShowText, "%M", ShowMon)
-            ShowText = Replace(ShowText, "%d", ShowDay)
-            ShowText = Replace(ShowText, "%H", ShowHour)
-            ShowText = Replace(ShowText, "%m", ShowMin)
-            ShowText = Replace(ShowText, "%s", ShowSec)
+            ShowText = Replace(ShowText, "%d", SpTime.Days)
+            ShowText = Replace(ShowText, "%H", SpTime.Hours)
+            ShowText = Replace(ShowText, "%m", SpTime.Minutes)
+            ShowText = Replace(ShowText, "%s", SpTime.Seconds)
+            ShowText = Replace(ShowText, "%k", SpTime.Milliseconds)
+
             Label1.Text = ShowText
         Catch ex As Exception
-            TimeF = "距离XX结束还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
+            TimeF = "距离XX还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
             MsgBox(ex.Message & vbCrLf & "时间格式化失败，已重置为默认格式。", MsgBoxStyle.Critical, "错误")
         End Try
         If UseMoveV = 0 Then
@@ -498,7 +527,7 @@ Public Class Form1
         Me.SaveLoc = 0
         Me.MySize = 0
         Me.TopMost = True
-        Form2.TextBox2.Text = "距离XX结束还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
+        Form2.TextBox2.Text = "距离XX还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
         Form2.DateTimePicker1.Value = New Date(3000, 1, 1, 23, 59, 59, 0)
         SetDate = Form2.DateTimePicker1.Value
         Form2.ComboBox3.SelectedIndex = 5
@@ -547,7 +576,7 @@ Public Class Form1
         Form2.TrackBar1.Value = CustOpacity
     End Sub
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        TimeF = "距离XX结束还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
+        TimeF = "距离XX还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
         '（在Alt+Tab隐藏窗体：启动时设置为Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None，但切换其他模式再切换回来又会显示）
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
         MovedV = 0
@@ -944,27 +973,51 @@ Public Class Form1
                     If dc = -1 Then
                         RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CountDownDay", 1, RegistryValueKind.DWord, "HKCU")
                         dc = 1
-                    ElseIf db / 2 - Int(db / 2) > 0 Then
-                        If dc > 31 Then
-                            RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CountDownDay", 1, RegistryValueKind.DWord, "HKCU")
-                            dc = 1
+                    ElseIf db = 1 Then
+                        If db / 2 - Int(db / 2) > 0 Then
+                            If dc > 31 Then
+                                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CountDownDay", 1, RegistryValueKind.DWord, "HKCU")
+                                dc = 1
+                            End If
                         End If
                     ElseIf db = 2 Then
                         If dc > 29 Then
                             RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CountDownDay", 1, RegistryValueKind.DWord, "HKCU")
                             dc = 1
                         End If
-                    ElseIf db / 2 - Int(db / 2) = 0 Then
-                        If dc > 30 Then
-                            RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CountDownDay", 1, RegistryValueKind.DWord, "HKCU")
-                            dc = 1
+                    ElseIf db > 2 And db <= 7 Then
+                        If db / 2 - Int(db / 2) > 0 Then
+                            If dc > 31 Then
+                                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CountDownDay", 1, RegistryValueKind.DWord, "HKCU")
+                                dc = 1
+                            End If
+                        Else
+                            If dc > 30 Then
+                                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CountDownDay", 1, RegistryValueKind.DWord, "HKCU")
+                                dc = 1
+                            End If
                         End If
+                    ElseIf db >= 8 And db <= 12 Then
+                        'ElseIf db / 2 - Int(db / 2) = 0 Then
+                        If db / 2 - Int(db / 2) > 0 Then
+                            If dc > 30 Then
+                                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CountDownDay", 1, RegistryValueKind.DWord, "HKCU")
+                                dc = 1
+                            End If
+                        Else
+                            If dc > 31 Then
+                                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CountDownDay", 1, RegistryValueKind.DWord, "HKCU")
+                                dc = 1
+                            End If
+                        End If
+                    ElseIf db = 0 Or db > 12 Then
+                        RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CountDownDay", 1, RegistryValueKind.DWord, "HKCU")
+                        dc = 1
                     End If
                 Else
                     RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CountDownDay", 1, RegistryValueKind.DWord, "HKCU")
                     dc = 1
                 End If
-
                 '时
                 Dim dd As Integer
                 If (Not mykey Is Nothing) Then
@@ -1019,7 +1072,15 @@ Public Class Form1
                 'Form2.DateTimePicker1.Value.AddHours(dd)
                 'Form2.DateTimePicker1.Value.AddMinutes(df)
                 'Form2.DateTimePicker1.Value.AddSeconds(dg)
-                Form2.DateTimePicker1.Value = New Date(da, db, dc, dd, df, dg, 0)
+                Dim ar As DateTime
+                'ar.AddYears(da)
+                'ar.AddMonths(db)
+                'ar.AddDays(dc)
+                'ar.AddHours(dd)
+                'ar.AddMinutes(df)
+                'ar.AddSeconds(dg)
+                ar = New DateTime(da, db, dc, dd, df, dg, 0)
+                Form2.DateTimePicker1.Value = ar
                 Me.SetDate = Form2.DateTimePicker1.Value
                 '////////////////////////////////////////////////////////////////////////////////////
                 '//
@@ -1346,13 +1407,20 @@ Public Class Form1
                     tr = mykey.GetValue("CustomFormat", Chr(10))
                     If tr = Chr(10) Then
                         RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CustomFormat", "HH:mm:ss", RegistryValueKind.String, "HKCU")
-                        tr = "距离XX结束还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
+                        tr = "距离XX还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
+                        Timer1.Interval = 1000
                     End If
                 Else
                     RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CustomFormat", "HH:mm:ss", RegistryValueKind.String, "HKCU")
-                    tr = "距离XX结束还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
+                    tr = "距离XX还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
+                    Timer1.Interval = 1000
                 End If
                 Form2.TextBox2.Text = tr
+                If tr.Contains("%k") = True Then
+                    Timer1.Interval = 100
+                Else
+                    Timer1.Interval = 1000
+                End If
                 '////////////////////////////////////////////////////////////////////////////////////
                 '//
                 '//  时钟位置注册表读取
@@ -1368,12 +1436,12 @@ Public Class Form1
                         If aa = -1 Then
                             RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFormX", (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width) / 2, RegistryValueKind.DWord, "HKCU")
                             aa = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width) / 2
-                        ElseIf aa < -2 - Me.Width Then
+                        ElseIf aa < 0 Then
                             RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFormX", (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width) / 2, RegistryValueKind.DWord, "HKCU")
-                            aa = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width) / 2
-                        ElseIf aa > System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width + Me.Width + 2 Then
+                            aa = 0
+                        ElseIf aa > System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width Then
                             RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFormX", (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width) / 2, RegistryValueKind.DWord, "HKCU")
-                            aa = (System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width) / 2
+                            aa = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Me.Width
                         Else
                             a.X = aa
                         End If
@@ -1386,12 +1454,12 @@ Public Class Form1
                         If ba = -1 Then
                             RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFormY", 5, RegistryValueKind.DWord, "HKCU")
                             ba = 5
-                        ElseIf ba < -2 - Me.Height Then
+                        ElseIf ba < 0 Then
                             RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFormY", 5, RegistryValueKind.DWord, "HKCU")
                             ba = 5
-                        ElseIf ba > System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height + Me.Height + 2 Then
+                        ElseIf ba > System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height Then
                             RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFormY", 5, RegistryValueKind.DWord, "HKCU")
-                            ba = 5
+                            ba = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height - Me.Height
                         Else
                             a.Y = ba
                         End If
@@ -1792,13 +1860,13 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub NotifyIcon1_MouseDoubleClick(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles NotifyIcon1.MouseDoubleClick
+    Private Sub NotifyIcon1_MouseDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles NotifyIcon1.MouseDoubleClick
         Me.Show()
         Timer2.Enabled = False
         NotifyIcon1.Visible = False
     End Sub
 
-    Private Sub shtbar_Click(sender As System.Object, e As System.EventArgs) Handles shtbar.Click
+    Private Sub shtbar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles shtbar.Click
         Me.Show()
         Timer2.Enabled = False
         NotifyIcon1.Visible = False

@@ -1,4 +1,6 @@
-# CountDownControl - 倒计时小工具
+<h1 align="center">
+  CountDownControl - 倒计时小工具
+</h1>
 
 ## 关于本项目
 

@@ -103,6 +103,7 @@ if "%PROCESSOR_ARCHITECTURE%"=="AMD64" goto x64
 
 :x86
 Reg delete HKLM\Software\Microsoft\Windows\CurrentVersion\run /v CountDownControl /f
+schtasks.exe /Delete /TN \CJH\CountDownControl /F
 del /q "%windir%\PolicyDefinitions\CountDownControl.admx"
 del /q "%windir%\PolicyDefinitions\zh-CN\CountDownControl.adml"
 del /q "%windir%\PolicyDefinitions\en-US\CountDownControl.adml"
@@ -144,6 +145,7 @@ goto enda
 
 :x64
 Reg delete HKLM\Software\Microsoft\Windows\CurrentVersion\run /v CountDownControl /f
+schtasks.exe /Delete /TN \CJH\CountDownControl /F
 del /q "%windir%\PolicyDefinitions\CountDownControl.admx"
 del /q "%windir%\PolicyDefinitions\zh-CN\CountDownControl.adml"
 del /q "%windir%\PolicyDefinitions\en-US\CountDownControl.adml"

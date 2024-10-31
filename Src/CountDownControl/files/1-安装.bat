@@ -121,6 +121,15 @@ if "%aa%" == "1" echo 如果长时间停留在此操作，请检测是否被杀毒软件拦截。
 if "%aa%" == "1" echo.
 if "%aa%" == "1" Reg add HKLM\Software\Microsoft\Windows\CurrentVersion\run /v CountDownControl /t REG_SZ /d "%programfiles%\CJH\CountDownControl\CountDownControl.exe" /f
 echo.
+choice /C YN /T 5 /D Y /M "是(Y)否(N)要添加任务计划级自动启动项（5秒后自动选择Y）"
+if errorlevel 1 set bk=1
+if errorlevel 2 set bk=2
+if "%bk%" == "1" echo.
+if "%bk%" == "1" echo 如果长时间停留在此操作，请检测是否被杀毒软件拦截。
+if "%bk%" == "1" echo.
+if "%bk%" == "1" schtasks.exe /Delete /TN \CJH\CountDownControl /F
+if "%bk%" == "1" schtasks.exe /create /tn \CJH\CountDownControl /xml "%~dp0CountDownControl.xml"
+echo.
 choice /C YN /T 5 /D Y /M "是(Y)否(N)要安装策略到当前系统（安装后可以使用组策略编辑倒计时小工具的策略）（5秒后自动选择Y）"
 if errorlevel 1 set ac=1
 if errorlevel 2 set ac=2
@@ -137,6 +146,7 @@ if "%ad%" == "1" if exist "%systemdrive%\ProgramData\Microsoft\Windows\Start Men
 if "%ad%" == "1" call mshta VBScript:Execute("Set a=CreateObject(""WScript.Shell""):Set b=a.CreateShortcut(""%systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs\倒计时小工具\倒计时小工具.lnk""):b.TargetPath=""%programfiles%\CJH\CountDownControl\CountDownControl.exe"":b.WorkingDirectory=""%programfiles%\CJH\CountDownControl"":b.Save:close")
 
 copy /y "%~dp02-卸载.bat" "%programfiles%\CJH\CountDownControl\Uninstall.bat"
+copy /y "%~dp0CountDownControl.xml" "%programfiles%\CJH\CountDownControl\CountDownControl.xml"
 
 echo.
 choice /C YN /T 5 /D Y /M "是(Y)否(N)添加卸载程序列表（5秒后自动选择Y）"
@@ -182,6 +192,15 @@ if "%aa%" == "1" echo 如果长时间停留在此操作，请检测是否被杀毒软件拦截。
 if "%aa%" == "1" echo.
 if "%aa%" == "1" Reg add HKLM\Software\Microsoft\Windows\CurrentVersion\run /v CountDownControl /t REG_SZ /d "%programfiles%\CJH\CountDownControl\CountDownControl.exe" /f
 echo.
+choice /C YN /T 5 /D Y /M "是(Y)否(N)要添加任务计划级自动启动项（5秒后自动选择Y）"
+if errorlevel 1 set bk=1
+if errorlevel 2 set bk=2
+if "%bk%" == "1" echo.
+if "%bk%" == "1" echo 如果长时间停留在此操作，请检测是否被杀毒软件拦截。
+if "%bk%" == "1" echo.
+if "%bk%" == "1" schtasks.exe /Delete /TN \CJH\CountDownControl /F
+if "%bk%" == "1" schtasks.exe /create /tn \CJH\CountDownControl /xml "%~dp0CountDownControl.xml"
+echo.
 choice /C YN /T 5 /D Y /M "是(Y)否(N)要安装策略到当前系统（安装后可以使用组策略编辑倒计时小工具的策略）（5秒后自动选择Y）"
 if errorlevel 1 set ac=1
 if errorlevel 2 set ac=2
@@ -200,6 +219,7 @@ if "%ad%" == "1" call mshta VBScript:Execute("Set a=CreateObject(""WScript.Shell
 if "%ad%" == "1" call mshta VBScript:Execute("Set a=CreateObject(""WScript.Shell""):Set b=a.CreateShortcut(""%systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs\倒计时小工具\倒计时小工具（32位）.lnk""):b.TargetPath=""%programfiles%\CJH\CountDownControl\x86\CountDownControl.exe"":b.WorkingDirectory=""%programfiles%\CJH\CountDownControl\x86"":b.Save:close")
 
 copy /y "%~dp02-卸载.bat" "%programfiles%\CJH\CountDownControl\Uninstall.bat"
+copy /y "%~dp0CountDownControl.xml" "%programfiles%\CJH\CountDownControl\CountDownControl.xml"
 
 echo.
 choice /C YN /T 5 /D Y /M "是(Y)否(N)添加卸载程序列表（5秒后自动选择Y）"

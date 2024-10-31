@@ -462,7 +462,7 @@ errcode:
                 Try
                     Form1.Label1.Text = Format(Now(), Form1.TimeF)
                 Catch ex As Exception
-                    Form1.TimeF = "距离XX结束还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
+                    Form1.TimeF = "距离XX还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
                     Me.ComboBox3.SelectedIndex = 5
                     Me.ComboBox3.SelectedText = "（自定义）"
                     If Form1.UnSaveData = 0 Then
@@ -470,6 +470,7 @@ errcode:
                     End If
                     MsgBox(ex.Message & vbCrLf & "时间格式化失败，已重置为默认格式。", MsgBoxStyle.Critical, "错误")
                 End Try
+                Form1.Timer1.Interval = 1000
                 If Form1.DisbFuState = 0 Then
                     TextBox2.Enabled = False
                     Button4.Enabled = False
@@ -578,7 +579,7 @@ errcode:
                 Try
                     Form1.Label1.Text = Format(Now(), Form1.TimeF)
                 Catch ex As Exception
-                    Form1.TimeF = "距离XX结束还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
+                    Form1.TimeF = "距离XX还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
                     Me.ComboBox3.SelectedIndex = 5
                     Me.ComboBox3.SelectedText = "（自定义）"
                     If Form1.UnSaveData = 0 Then
@@ -586,6 +587,7 @@ errcode:
                     End If
                     MsgBox(ex.Message & vbCrLf & "时间格式化失败，已重置为默认格式。", MsgBoxStyle.Critical, "错误")
                 End Try
+                Form1.Timer1.Interval = 1000
                 If Form1.DisbFuState = 0 Then
                     TextBox2.Enabled = False
                     Button4.Enabled = False
@@ -651,7 +653,7 @@ errcode:
                 Try
                     Form1.Label1.Text = Format(Now(), Form1.TimeF)
                 Catch ex As Exception
-                    Form1.TimeF = "距离XX结束还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
+                    Form1.TimeF = "距离XX还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
                     Me.ComboBox3.SelectedIndex = 5
                     Me.ComboBox3.SelectedText = "（自定义）"
                     If Form1.UnSaveData = 0 Then
@@ -659,6 +661,7 @@ errcode:
                     End If
                     MsgBox(ex.Message & vbCrLf & "时间格式化失败，已重置为默认格式。", MsgBoxStyle.Critical, "错误")
                 End Try
+                Form1.Timer1.Interval = 1000
                 If Form1.DisbFuState = 0 Then
                     TextBox2.Enabled = False
                     Button4.Enabled = False
@@ -717,7 +720,7 @@ errcode:
                 Try
                     Form1.Label1.Text = Format(Now(), Form1.TimeF)
                 Catch ex As Exception
-                    Form1.TimeF = "距离XX结束还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
+                    Form1.TimeF = "距离XX还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
                     Me.ComboBox3.SelectedIndex = 5
                     Me.ComboBox3.SelectedText = "（自定义）"
                     If Form1.UnSaveData = 0 Then
@@ -725,6 +728,7 @@ errcode:
                     End If
                     MsgBox(ex.Message & vbCrLf & "时间格式化失败，已重置为默认格式。", MsgBoxStyle.Critical, "错误")
                 End Try
+                Form1.Timer1.Interval = 1000
                 If Form1.DisbFuState = 0 Then
                     TextBox2.Enabled = False
                     Button4.Enabled = False
@@ -783,7 +787,7 @@ errcode:
                 Try
                     Form1.Label1.Text = Format(Now(), Form1.TimeF)
                 Catch ex As Exception
-                    Form1.TimeF = "距离XX结束还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
+                    Form1.TimeF = "距离XX还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
                     Me.ComboBox3.SelectedIndex = 5
                     Me.ComboBox3.SelectedText = "（自定义）"
                     If Form1.UnSaveData = 0 Then
@@ -791,6 +795,7 @@ errcode:
                     End If
                     MsgBox(ex.Message & vbCrLf & "时间格式化失败，已重置为默认格式。", MsgBoxStyle.Critical, "错误")
                 End Try
+                Form1.Timer1.Interval = 1000
                 If Form1.DisbFuState = 0 Then
                     TextBox2.Enabled = False
                     Button4.Enabled = False
@@ -855,20 +860,25 @@ errcode:
             MsgBox(ex.Message, MsgBoxStyle.Critical, "错误")
         End Try
     End Sub
-    Public Sub Button4_Click(sender As System.Object, e As System.EventArgs) Handles Button4.Click
+    Public Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
         Try
             Form1.TimeF = Me.TextBox2.Text
             'Form1.Label1.AutoSize = True
             Try
                 Form1.Label1.Text = Format(Now(), Form1.TimeF)
             Catch ex As Exception
-                Form1.TimeF = "距离XX结束还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
-                Me.TextBox2.Text = "距离XX结束还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
+                Form1.TimeF = "距离XX还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
+                Me.TextBox2.Text = "距离XX还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
                 If Form1.UnSaveData = 0 Then
-                    RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CustomFormat", "距离XX结束还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒", RegistryValueKind.String, "HKCU")
+                    RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CustomFormat", "距离XX还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒", RegistryValueKind.String, "HKCU")
                 End If
                 MsgBox(ex.Message & vbCrLf & "时间格式化失败，已重置为默认格式。", MsgBoxStyle.Critical, "错误")
             End Try
+            If Form1.TimeF.Contains("%k") = True Then
+                Form1.Timer1.Interval = 100
+            Else
+                Form1.Timer1.Interval = 1000
+            End If
             If Form1.MySize = 0 Then
                 Dim a As SizeF
                 Dim b As Graphics = Graphics.FromImage(New Bitmap(1, 1))
@@ -903,11 +913,11 @@ errcode:
 
         Catch ex As Exception
             MsgBox("设置自定义格式失败，已重置为默认格式。", MsgBoxStyle.Critical, "错误")
-            Me.TextBox2.Text = "距离XX结束还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
+            Me.TextBox2.Text = "距离XX还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
         End Try
     End Sub
 
-    Private Sub Button5_Click(sender As System.Object, e As System.EventArgs) Handles Button5.Click
+    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
         If MessageBox.Show("                                 " & vbCrLf & "确定要恢复默认设置吗？" & vbCrLf & "执行该操作会把设置恢复到默认的状态，并删除自定义内容，此操作无法撤销。" & vbCrLf & vbCrLf & "你确定要继续吗？" & vbCrLf & "                                 ", "警告 - 恢复默认设置", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) = Windows.Forms.DialogResult.Yes Then
             '如果预先关联事件， Me.CheckBox1.Checked = Ture / Flase 操作会触发事件，导致操作相反
             'RemoveHandler CheckBox1.CheckedChanged, AddressOf CheckBox1_CheckedChanged
@@ -972,107 +982,107 @@ errcode:
                 RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CountDownSecond", 59, RegistryValueKind.DWord, "HKCU")
                 Me.DateTimePicker1.Value = New Date(3000, 1, 1, 23, 59, 59, 0)
                 Form1.SetDate = DateTimePicker1.Value
-        Form1.SaveLoc = 1
-        CheckBox3.Checked = True
+                Form1.SaveLoc = 1
+                CheckBox3.Checked = True
 
-        RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "UseCustomSize", 0, RegistryValueKind.DWord, "HKCU")
-
-
-        Form1.MySize = 0
-        CheckBox4.Checked = False
-
-        RegKeyModule.DelReg("Software\CJH\CountDownControl\Settings", "CustomHeight", "HKCU")
-        RegKeyModule.DelReg("Software\CJH\CountDownControl\Settings", "CustomWidth", "HKCU")
+                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "UseCustomSize", 0, RegistryValueKind.DWord, "HKCU")
 
 
+                Form1.MySize = 0
+                CheckBox4.Checked = False
 
-        Form1.Label1.Font = New System.Drawing.Font("Segoe UI", 21.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.FontDialog1.Font = Form1.Label1.Font
-
-        RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFont", Form1.Label1.Font.Name, RegistryValueKind.String, "HKCU")
-        RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFontPx", Form1.Label1.Font.Size, RegistryValueKind.DWord, "HKCU")
-        RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFontItalic", Form1.Label1.Font.Italic, RegistryValueKind.DWord, "HKCU")
-        RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFontBold", Form1.Label1.Font.Bold, RegistryValueKind.DWord, "HKCU")
-        RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFontUnderLine", Form1.Label1.Font.Underline, RegistryValueKind.DWord, "HKCU")
-        RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFontStrikeout", Form1.Label1.Font.Strikeout, RegistryValueKind.DWord, "HKCU")
-        RegKeyModule.DelReg("Software\CJH\CountDownControl\Settings", "TimeFormX", "HKCU")
-        RegKeyModule.DelReg("Software\CJH\CountDownControl\Settings", "TimeFormY", "HKCU")
-
-
-        ComboBox3.SelectedIndex = 5
-        Call ComboBox3_SelectedIndexChanged(sender, e)
-
-        RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CustomFormat", "距离XX结束还有" & vbCrLf & "yyyy-m-d HH:mm:ss", RegistryValueKind.String, "HKCU")
-
-        Call Button4_Click(sender, e)
-
-        If Form1.crmd = 1 Then
-            Form1.Label1.ForeColor = Color.Black
-        Else
-            Form1.Label1.ForeColor = Color.White
-        End If
-
-        RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFontR", Form1.Label1.ForeColor.R, RegistryValueKind.DWord, "HKCU")
-        RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFontG", Form1.Label1.ForeColor.G, RegistryValueKind.DWord, "HKCU")
-        RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFontB", Form1.Label1.ForeColor.B, RegistryValueKind.DWord, "HKCU")
-
-        RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeTheme", 0, RegistryValueKind.DWord, "HKCU")
-        Form1.TimeTheme = 0
-        RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CustomThemePath", "", RegistryValueKind.String, "HKCU")
+                RegKeyModule.DelReg("Software\CJH\CountDownControl\Settings", "CustomHeight", "HKCU")
+                RegKeyModule.DelReg("Software\CJH\CountDownControl\Settings", "CustomWidth", "HKCU")
 
 
 
-        TextBox1.Text = ""
-        TextBox2.Text = "距离XX结束还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
-        TextBox3.Text = Form1.Width
-        TextBox4.Text = Form1.Height
-        TextBox5.Text = ""
+                Form1.Label1.Font = New System.Drawing.Font("Segoe UI", 21.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+                Me.FontDialog1.Font = Form1.Label1.Font
 
-        Form1.MySize = 0
-
-        AddReg("Software\CJH\CountDownControl\Settings", "UseCustomSize", 0, RegistryValueKind.DWord, "HKCU")
-
-
-        TextBox3.Enabled = False
-        TextBox4.Enabled = False
-        Button9.Enabled = False
-
-        'Dim aa As SizeF
-        'Dim b As Graphics = Graphics.FromImage(New Bitmap(1, 1))
-        'aa = TextRenderer.MeasureText(Form1.Label1.Text, Form1.Label1.Font)
-        'Dim c As Integer
-        'Form1.SetTimeFormSize(aa.Height, aa.Width)
-        'c = Form1.Width - Form1.CaW
-        'If Not (Form1.SaveLoc = 1 And Form1.IsBootV = 1) Then
-        '    If c <> 0 Then
-        '        Form1.Location = New Point(Form1.Location.X + c / 2, Form1.Location.Y)
-        '    End If
-        'End If
-
-        Form1.Location = New Size((System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Form1.Width) / 2, 5)
+                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFont", Form1.Label1.Font.Name, RegistryValueKind.String, "HKCU")
+                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFontPx", Form1.Label1.Font.Size, RegistryValueKind.DWord, "HKCU")
+                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFontItalic", Form1.Label1.Font.Italic, RegistryValueKind.DWord, "HKCU")
+                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFontBold", Form1.Label1.Font.Bold, RegistryValueKind.DWord, "HKCU")
+                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFontUnderLine", Form1.Label1.Font.Underline, RegistryValueKind.DWord, "HKCU")
+                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFontStrikeout", Form1.Label1.Font.Strikeout, RegistryValueKind.DWord, "HKCU")
+                RegKeyModule.DelReg("Software\CJH\CountDownControl\Settings", "TimeFormX", "HKCU")
+                RegKeyModule.DelReg("Software\CJH\CountDownControl\Settings", "TimeFormY", "HKCU")
 
 
-        RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFormOpacity", 100, RegistryValueKind.DWord, "HKCU")
+                ComboBox3.SelectedIndex = 5
+                Call ComboBox3_SelectedIndexChanged(sender, e)
+
+                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CustomFormat", "距离XX还有" & vbCrLf & "yyyy-m-d HH:mm:ss", RegistryValueKind.String, "HKCU")
+
+                Call Button4_Click(sender, e)
+
+                If Form1.crmd = 1 Then
+                    Form1.Label1.ForeColor = Color.Black
+                Else
+                    Form1.Label1.ForeColor = Color.White
+                End If
+
+                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFontR", Form1.Label1.ForeColor.R, RegistryValueKind.DWord, "HKCU")
+                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFontG", Form1.Label1.ForeColor.G, RegistryValueKind.DWord, "HKCU")
+                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFontB", Form1.Label1.ForeColor.B, RegistryValueKind.DWord, "HKCU")
+
+                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeTheme", 0, RegistryValueKind.DWord, "HKCU")
+                Form1.TimeTheme = 0
+                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "CustomThemePath", "", RegistryValueKind.String, "HKCU")
 
 
-        Form1.CustOpacity = 100
-        Label17.Text = "99%"
-        Form1.Opacity = 0.99
-        TrackBar1.Value = 99
 
-        Call Form1.formatcolorcur()
-        Call formatcolorcurset()
-        Call GPLForm.formatcolorcursetmsg()
+                TextBox1.Text = ""
+                TextBox2.Text = "距离XX还有" & vbCrLf & "%d天 %H小时 %m分钟 %s秒"
+                TextBox3.Text = Form1.Width
+                TextBox4.Text = Form1.Height
+                TextBox5.Text = ""
+
+                Form1.MySize = 0
+
+                AddReg("Software\CJH\CountDownControl\Settings", "UseCustomSize", 0, RegistryValueKind.DWord, "HKCU")
 
 
-        '如果预先关联事件， Me.CheckBox1.Checked = Ture / Flase 操作会触发事件，导致操作相反
-        'AddHandler CheckBox1.CheckedChanged, AddressOf CheckBox1_CheckedChanged
-        'AddHandler CheckBox2.CheckedChanged, AddressOf CheckBox2_CheckedChanged
-        'AddHandler CheckBox3.CheckedChanged, AddressOf CheckBox3_CheckedChanged
-        'AddHandler CheckBox4.CheckedChanged, AddressOf CheckBox4_CheckedChanged
+                TextBox3.Enabled = False
+                TextBox4.Enabled = False
+                Button9.Enabled = False
+
+                'Dim aa As SizeF
+                'Dim b As Graphics = Graphics.FromImage(New Bitmap(1, 1))
+                'aa = TextRenderer.MeasureText(Form1.Label1.Text, Form1.Label1.Font)
+                'Dim c As Integer
+                'Form1.SetTimeFormSize(aa.Height, aa.Width)
+                'c = Form1.Width - Form1.CaW
+                'If Not (Form1.SaveLoc = 1 And Form1.IsBootV = 1) Then
+                '    If c <> 0 Then
+                '        Form1.Location = New Point(Form1.Location.X + c / 2, Form1.Location.Y)
+                '    End If
+                'End If
+
+                Form1.Location = New Size((System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - Form1.Width) / 2, 5)
+
+
+                RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFormOpacity", 100, RegistryValueKind.DWord, "HKCU")
+
+
+                Form1.CustOpacity = 100
+                Label17.Text = "99%"
+                Form1.Opacity = 0.99
+                TrackBar1.Value = 99
+
+                Call Form1.formatcolorcur()
+                Call formatcolorcurset()
+                Call GPLForm.formatcolorcursetmsg()
+
+
+                '如果预先关联事件， Me.CheckBox1.Checked = Ture / Flase 操作会触发事件，导致操作相反
+                'AddHandler CheckBox1.CheckedChanged, AddressOf CheckBox1_CheckedChanged
+                'AddHandler CheckBox2.CheckedChanged, AddressOf CheckBox2_CheckedChanged
+                'AddHandler CheckBox3.CheckedChanged, AddressOf CheckBox3_CheckedChanged
+                'AddHandler CheckBox4.CheckedChanged, AddressOf CheckBox4_CheckedChanged
             Catch ex As Exception
-            MsgBox("恢复默认设置失败。" & vbCrLf & ex.Message, MsgBoxStyle.Critical, "错误")
-        End Try
+                MsgBox("恢复默认设置失败。" & vbCrLf & ex.Message, MsgBoxStyle.Critical, "错误")
+            End Try
         End If
     End Sub
 
@@ -1168,7 +1178,8 @@ errcode:
                         "%d  倒计时剩余天数" & vbCrLf & _
                         "%H  倒计时剩余小时数" & vbCrLf & _
                         "%m  倒计时剩余分钟数" & vbCrLf & _
-                        "%s  倒计时剩余秒数", _
+                        "%s  倒计时剩余秒数" & vbCrLf & _
+                        "%k  倒计时剩余毫秒数", _
                         "帮助", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
