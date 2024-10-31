@@ -1,4 +1,4 @@
-<h1 align="center" style="color: blue;">
+<h1 align="center">
   CountDownControl - 倒计时小工具
 </h1>
 
@@ -20,7 +20,7 @@
 
 ## 下载
 
-转到[发布页](https://github.com/cjhdevact/CountDownControl/releases)下载程序或源代码。
+转到[发布页](https://github.com/cjhdevact/CountDownControl/releases/latest)下载程序或源代码。
 
 早期版本的源代码也在发布页里。
 
