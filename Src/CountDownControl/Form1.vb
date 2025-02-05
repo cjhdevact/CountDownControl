@@ -1,6 +1,6 @@
 ﻿'****************************************************************************
 '    CountDownControl
-'    Copyright (C) 2024 CJH.
+'    Copyright (C) 2024-2025 CJH.
 '
 '    This program is free software: you can redistribute it and/or modify
 '    it under the terms of the GNU General Public License as published by
@@ -30,6 +30,19 @@ Imports Microsoft.Win32
 Imports System.Runtime.InteropServices
 
 Public Class Form1
+    '在Alt+Tab中隐藏
+    Const WS_EX_COMPOSITED = &H2000000 '0x02000000
+    'Const WS_EX_NOACTIVATE = &H8000000 '0x08000000
+    Const WS_EX_TOOLWINDOW = &H80 '0x00000080
+    'Const WS_EX_TRANSPARENT = &H20 '0x00000020
+    Protected Overrides ReadOnly Property CreateParams As CreateParams
+        Get
+            Dim cp As CreateParams = MyBase.CreateParams
+            cp.ExStyle = cp.ExStyle Or WS_EX_TOOLWINDOW Or WS_EX_COMPOSITED
+            Return cp
+        End Get
+    End Property
+
     <DllImport("dwmapi.dll")> _
     Public Shared Function DwmSetWindowAttribute(ByVal hwnd As IntPtr, ByVal attr As DwmWindowAttribute, ByRef attrValue As Integer, ByVal attrSize As Integer) As Integer
     End Function
@@ -320,11 +333,17 @@ Public Class Form1
                 End If
             End If
         End If
+        'If Me.TopMost = True Then
+        '    If Me.Visible = True Then
+        '        SetWindowPos(Me.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS)
+        '    End If
+        'End If
+
         If MySize = 0 Then
-            Dim aa As SizeF
-            Dim b As Graphics = Graphics.FromImage(New Bitmap(1, 1))
+    Dim aa As SizeF
+    Dim b As Graphics = Graphics.FromImage(New Bitmap(1, 1))
             aa = TextRenderer.MeasureText(Me.Label1.Text, Me.Label1.Font)
-            Dim c As Integer
+    Dim c As Integer
             If aa.Width <= 42 Then
                 Me.GetTimeFormSize(38, aa.Width + 8)
             ElseIf 400 <= aa.Width Then
@@ -335,7 +354,7 @@ Public Class Form1
             c = Me.Width - Me.CaW
             If Not (Me.SaveLoc = 1 And Me.IsBootV = 1) Then
                 If c <> 0 Then
-                    'Me.Location = New Point(Me.Location.X + c / 2, Me.Location.Y)
+    'Me.Location = New Point(Me.Location.X + c / 2, Me.Location.Y)
                     If Me.SaveLoc = 1 Then
                         If Me.UnSaveData = 0 Then
                             RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFormX", Me.Location.X, RegistryValueKind.DWord, "HKCU")
@@ -350,6 +369,15 @@ Public Class Form1
             Me.SetTimeFormSize(aa.Height, aa.Width)
         End If
     End Sub
+    '<DllImport("user32.dll")>
+    'Private Shared Function SetWindowPos(ByVal hWnd As IntPtr, ByVal hWndInsertAfter As IntPtr, ByVal X As Integer, ByVal Y As Integer, ByVal cx As Integer, ByVal cy As Integer, ByVal uFlags As UInteger) As Boolean
+    'End Function
+
+    'Const HWND_TOPMOST = -1
+    'Const SWP_NOSIZE As UInteger = &H1
+    'Const SWP_NOMOVE As UInteger = &H2
+    'Const TOPMOST_FLAGS As UInteger = SWP_NOMOVE Or SWP_NOSIZE
+
     Public Sub SetTimeFormSize(ByVal MeH As Integer, ByVal MeW As Integer)
         Dim disi As Graphics = Me.CreateGraphics()
         'If disi.DpiX <= 96 Then

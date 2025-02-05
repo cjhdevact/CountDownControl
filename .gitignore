@@ -1,0 +1,9 @@
+/Src/.vs/
+
+/Src/*.suo
+
+/Src/CountDownControl-bin/
+
+/Src/CountDownControl/bin/
+
+/Src/CountDownControl/obj/

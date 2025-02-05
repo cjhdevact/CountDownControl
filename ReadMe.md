@@ -1,5 +1,5 @@
 <h1 align="center">
-  CountDownControl - 倒计时小工具
+  <a href="https://github.com/cjhdevact/CountDownControl">CountDownControl - 倒计时小工具</a>
 </h1>
 
 ## 关于本项目
@@ -36,7 +36,7 @@
 
 在修改和由本仓库代码衍生的代码中需要说明“基于 CountDownControl 开发”。
 
-本程序基于 TimeControl 框架代码修改。
+本程序基于 TimeControl 框架代码二次开发。
 
 ## 相关项目
 

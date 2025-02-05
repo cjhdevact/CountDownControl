@@ -1,6 +1,6 @@
 ﻿'****************************************************************************
 '    CountDownControl
-'    Copyright (C) 2024 CJH.
+'    Copyright (C) 2024-2025 CJH.
 '
 '    This program is free software: you can redistribute it and/or modify
 '    it under the terms of the GNU General Public License as published by
@@ -209,7 +209,7 @@ errcode:
             ComboBox4.SelectedText = "自定义背景"
         End If
 
-        Label1.Text = "倒计时小工具 版本：" & My.Application.Info.Version.ToString & vbCrLf & "版权所有 © 2024 CJH。"
+        Label1.Text = "倒计时小工具 版本：" & My.Application.Info.Version.ToString & vbCrLf & "版权所有 © 2024-2025 CJH。"
         Call formatcolorcurset()
     End Sub
     Private Sub TextBox1_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TextBox1.KeyPress
@@ -444,8 +444,12 @@ errcode:
         End If
     End Sub
 
-    Private Sub Button3_Click(sender As System.Object, e As System.EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        Dim aa As Integer = 0
         If (MessageBox.Show("确定退出倒计时小工具吗？", "倒计时小工具", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes) Then
+            aa = 1
+        End If
+        If aa = 1 Then
             Form1.Timer1.Enabled = False
             Form1.Timer2.Enabled = False
             'End
@@ -1521,7 +1525,7 @@ errcode:
         End If
     End Sub
 
-    Private Sub LinkLabel4_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel4.LinkClicked
+    Private Sub LinkLabel4_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel4.LinkClicked
         GPLForm.ShowDialog()
     End Sub
 
@@ -1529,8 +1533,12 @@ errcode:
         MessageBox.Show("当前支持的命令行：" & vbCrLf & "/safemode 以安全模式加载，不读取设置也不保存设置。当程序由于配置原因无法正常启动，可以使用该命令行启动后恢复默认设置。" & vbCrLf & "/noproflie 不使用配置文件。" & vbCrLf & "/nosaveprofile 读取设置但不保存设置" & vbCrLf & vbCrLf & "部分功能可能因为策略设置而不可用。命令行的内容要优先于策略设置，为所有用户设置的策略优先级高于针对单一用户设置的策略。", "帮助", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
-    Private Sub Button12_Click(sender As System.Object, e As System.EventArgs) Handles Button12.Click
+    Private Sub Button12_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button12.Click
+        Dim aa As Integer = 0
         If (MessageBox.Show("确定重启倒计时小工具吗？", "倒计时小工具", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes) Then
+            aa = 1
+        End If
+        If aa = 1 Then
             System.Diagnostics.Process.Start(Application.ExecutablePath)
             Form1.Timer1.Enabled = False
             Form1.Timer2.Enabled = False

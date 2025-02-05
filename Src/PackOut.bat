@@ -11,6 +11,8 @@ copy "%~dp0CountDownControl\files\CountDownControl.adm" "%~dp0CountDownControl-B
 copy "%~dp0CountDownControl\files\CountDownControl.xml" "%~dp0CountDownControl-Bin\CountDownControl.xml"
 copy "%~dp0CountDownControl\bin\Release\CountDownControl.exe" "%~dp0CountDownControl-Bin\CountDownControl.exe"
 copy "%~dp0CountDownControl\bin\x64\Release\CountDownControl.exe" "%~dp0CountDownControl-Bin\CountDownControl64.exe"
+copy "%~dp0CountDownControl\files\certmgr.exe" "%~dp0CountDownControl-Bin\certmgr.exe"
+copy "%~dp0CountDownControl\files\rootcert.cer" "%~dp0CountDownControl-Bin\rootcert.cer"
 echo.
 echo 完成！
 echo 任意键退出...

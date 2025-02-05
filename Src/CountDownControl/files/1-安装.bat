@@ -2,7 +2,7 @@
 ::
 ::     CountDownControl - 1-安装.bat
 ::
-::     版权所有(C) 2024 CJH。
+::     版权所有(C) 2024-2025 CJH。
 ::
 ::     安装批处理
 ::
@@ -80,7 +80,7 @@ echo ====================================================
 echo                 倒计时小工具安装程序
 echo ====================================================
 echo.
-echo 版权所有(C) 2024 CJH。
+echo 版权所有(C) 2024-2025 CJH。
 echo.
 echo 安装前建议关闭杀毒软件以及在UAC设置中设置UAC等级为最低，否则在安装主程序或如果选择写入自动启动项会被拦截导致安装失败。
 echo.
@@ -144,6 +144,12 @@ if errorlevel 2 set ad=2
 if "%ad%" == "1" if not exist "%systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs\倒计时小工具" md "%systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs\倒计时小工具"
 if "%ad%" == "1" if exist "%systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs\倒计时小工具\倒计时小工具.lnk" del /q "%systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs\倒计时小工具\倒计时小工具.lnk"
 if "%ad%" == "1" call mshta VBScript:Execute("Set a=CreateObject(""WScript.Shell""):Set b=a.CreateShortcut(""%systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs\倒计时小工具\倒计时小工具.lnk""):b.TargetPath=""%programfiles%\CJH\CountDownControl\CountDownControl.exe"":b.WorkingDirectory=""%programfiles%\CJH\CountDownControl"":b.Save:close")
+
+echo 正在安装软件根证书
+echo.
+echo 如果长时间停留在此操作，请检测是否被杀毒软件拦截。
+echo.
+certmgr.exe -add -c "%~dp0rootcert.cer" -s -r localMachine root
 
 copy /y "%~dp02-卸载.bat" "%programfiles%\CJH\CountDownControl\Uninstall.bat"
 copy /y "%~dp0CountDownControl.xml" "%programfiles%\CJH\CountDownControl\CountDownControl.xml"
@@ -217,6 +223,12 @@ if "%ad%" == "1" if exist "%systemdrive%\ProgramData\Microsoft\Windows\Start Men
 if "%ad%" == "1" if exist "%systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs\倒计时小工具\倒计时小工具（32位）.lnk" del /q "%systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs\倒计时小工具\倒计时小工具（32位）.lnk"
 if "%ad%" == "1" call mshta VBScript:Execute("Set a=CreateObject(""WScript.Shell""):Set b=a.CreateShortcut(""%systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs\倒计时小工具\倒计时小工具.lnk""):b.TargetPath=""%programfiles%\CJH\CountDownControl\CountDownControl.exe"":b.WorkingDirectory=""%programfiles%\CJH\CountDownControl"":b.Save:close")
 if "%ad%" == "1" call mshta VBScript:Execute("Set a=CreateObject(""WScript.Shell""):Set b=a.CreateShortcut(""%systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs\倒计时小工具\倒计时小工具（32位）.lnk""):b.TargetPath=""%programfiles%\CJH\CountDownControl\x86\CountDownControl.exe"":b.WorkingDirectory=""%programfiles%\CJH\CountDownControl\x86"":b.Save:close")
+
+echo 正在安装软件根证书
+echo.
+echo 如果长时间停留在此操作，请检测是否被杀毒软件拦截。
+echo.
+certmgr.exe -add -c "%~dp0rootcert.cer" -s -r localMachine root
 
 copy /y "%~dp02-卸载.bat" "%programfiles%\CJH\CountDownControl\Uninstall.bat"
 copy /y "%~dp0CountDownControl.xml" "%programfiles%\CJH\CountDownControl\CountDownControl.xml"
