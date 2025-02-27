@@ -107,6 +107,7 @@ Public Class Form1
     Public UnSaveData As Integer '不保存设置
     Public UnReadData As Integer '不读取设置
     Public ShowModeTips As Integer '不显示横幅
+    Public NeedStillTopMost As Integer '是否强制顶置
 
     '倒计时目标时间
     Public SetDate As Date
@@ -368,15 +369,23 @@ Public Class Form1
             c = 0
             Me.SetTimeFormSize(aa.Height, aa.Width)
         End If
-    End Sub
-    '<DllImport("user32.dll")>
-    'Private Shared Function SetWindowPos(ByVal hWnd As IntPtr, ByVal hWndInsertAfter As IntPtr, ByVal X As Integer, ByVal Y As Integer, ByVal cx As Integer, ByVal cy As Integer, ByVal uFlags As UInteger) As Boolean
-    'End Function
 
-    'Const HWND_TOPMOST = -1
-    'Const SWP_NOSIZE As UInteger = &H1
-    'Const SWP_NOMOVE As UInteger = &H2
-    'Const TOPMOST_FLAGS As UInteger = SWP_NOMOVE Or SWP_NOSIZE
+        If Me.TopMost = True Then
+            If Me.Visible = True Then
+                If NeedStillTopMost = 1 Then
+                    SetWindowPos(Me.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS)
+                End If
+            End If
+        End If
+    End Sub
+    <DllImport("user32.dll")>
+    Private Shared Function SetWindowPos(ByVal hWnd As IntPtr, ByVal hWndInsertAfter As IntPtr, ByVal X As Integer, ByVal Y As Integer, ByVal cx As Integer, ByVal cy As Integer, ByVal uFlags As UInteger) As Boolean
+    End Function
+
+    Const HWND_TOPMOST = -1
+    Const SWP_NOSIZE As UInteger = &H1
+    Const SWP_NOMOVE As UInteger = &H2
+    Const TOPMOST_FLAGS As UInteger = SWP_NOMOVE Or SWP_NOSIZE
 
     Public Sub SetTimeFormSize(ByVal MeH As Integer, ByVal MeW As Integer)
         Dim disi As Graphics = Me.CreateGraphics()
@@ -455,6 +464,7 @@ Public Class Form1
         Form2.Label20.Text = "部分功能由于被管理员禁用而无法使用。"
     End Sub
     Public Sub loaddef(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        NeedStillTopMost = 1
         '////////////////////////////////////////////////////////////////////////////////////
         '//
         '//  系统颜色读取注册表读取（UnReadData=1）
@@ -1822,10 +1832,12 @@ Public Class Form1
     End Sub
 
     Private Sub ext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ext.Click
+        NeedStillTopMost = 0
         'If MessageBox.Show("确定要关闭时钟吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = MsgBoxResult.Yes Then
         'End
         'End If
         Form2.ShowDialog()
+        NeedStillTopMost = 1
     End Sub
 
     Private Sub Me_FormClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles Me.FormClosing
