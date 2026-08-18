@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("倒计时小工具")> 
 <Assembly: AssemblyCompany("CJH")> 
 <Assembly: AssemblyProduct("倒计时小工具")> 
-<Assembly: AssemblyCopyright("Copyright © 2024-2025 CJH. All Rights Reserved.")> 
+<Assembly: AssemblyCopyright("Copyright © 2024-2026 CJH. All Rights Reserved.")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' 方法是按如下所示使用“*”:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.3.25022")> 
-<Assembly: AssemblyFileVersion("1.0.3.25022")> 
+<Assembly: AssemblyVersion("1.0.4.26081")> 
+<Assembly: AssemblyFileVersion("1.0.4.26081")> 

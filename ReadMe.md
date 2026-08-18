@@ -16,21 +16,28 @@
 - [x] 自定义倒计时显示格式以及文字
 - [x] 支持通过组策略配置策略
 - [x] 支持保存你的设置
+- [x] UIAccess 级别顶置（需要 Windows 8 以上版本）
 - [x] 其它一些功能。它们正在等待被你发现……
+
+补充说明：
+
+- UIAccess 级别顶置功能需要 Windows 8 以上版本才可使用，Windows 7 及以下版本无需此功能支持。UIAccess 需要以管理员身份运行，本程序内部自动提权的功能在 Windows 8 默认自带的 .NET Framework 4.5 下可能会导致程序崩溃，建议升级 .NET Framework 4.6 及以上版本，或者手动以管理员身份运行。Windows 8 和 8.1 开机自启开始屏幕会覆盖住UAC窗口，导致开机自启UAC确认窗口最小化到任务栏，如果不确认UAC，操作程序会出现初始化Bug，建议关闭UAC提示使用。
+
+- 本程序界面的圆角功能需要开启 DWM 渲染，如果你使用的是 Windows Vista 和 7，需要开启 Aero 主题，否则无法显示圆角效果，Windows XP 等无 DWM 渲染不支持显示圆角效果，Windows 8 以上的系统默认支持显示圆角效果。
 
 ## 下载
 
-转到[发布页](https://github.com/cjhdevact/CountDownControl/releases/latest)下载程序或源代码。
+请访问[发布页](https://github.com/cjhdevact/CountDownControl/releases/latest)下载最新版本的可执行文件或源代码。
 
 ## 数字签名
 
-本程序使用了自签证书进行了签名
+本项目发布的二进制文件使用自签名证书进行代码签名，以确保文件的完整性和来源可信。
 
 证书信息：
 ```
 Name: CJH Root Certificate
 Create: ‎2024‎年‎12‎月‎27‎日 20:42:16
-Expires: ‎2150‎年‎12‎月‎31‎日 0:00:003e5
+Expires: ‎2150‎年‎12‎月‎31‎日 0:00:00
 MD5: 0bc507db70947e57ddd81bec63b581d9
 SHA256: d2d67c8ebea3cc954c7ee0e94f5f45537dde7709053ca9e89f352fda60283
 Key fingerprint (SHA1): 73b80a8d0ba3f662b575f2fc0b78612469e22e59
@@ -39,7 +46,7 @@ Certificate SerialNumber: dbde77418068d5a34b2064626a12ecde
 Key Type: md5RSA
 ```
 
-你可以在[这里](Src/CountDownControl/files/rootcert.cer)下载证书来验证程序完整性。
+如需验证，可从[这里](Src/CountDownControl/files/rootcert.cer)获取根证书文件。
 
 ## 程序截图
 
@@ -63,6 +70,14 @@ Key Type: md5RSA
 
 [TimeControlAero](https://github.com/cjhdevact/TimeControlAero) - 时钟小工具Aero版（开发中）
 
-------------
+## 引用
 
-本程序基于 `GPL-3.0` 授权。
+本项目使用了以下第三方库：
+
+[UIAccessHelper](https://github.com/cjhdevact/UIAccessHelper)
+
+## 开源说明
+
+本项目基于 `GPLv3` 许可证开源，详情请参阅 [License](License) 文件。 
+
+您可以在遵守许可证的前提下自由使用、修改和分发本软件。

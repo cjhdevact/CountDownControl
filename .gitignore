@@ -2,7 +2,9 @@
 
 /Src/*.suo
 
-/Src/CountDownControl-bin/
+/Tools/CountDownControl-Bin/
+
+/Tools/CountDownControl-Bin*
 
 /Src/CountDownControl/bin/
 

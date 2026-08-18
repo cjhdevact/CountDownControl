@@ -190,6 +190,8 @@
     <None Include="Resources\bkgdark400.png" />
     <None Include="Resources\bkg50.png" />
     <None Include="Resources\bkgdark50.png" />
+    <None Include="lib\UIAccessHelper.dll" />
+    <None Include="lib\UIAccessHelper64.dll" />
     <Content Include="Resources\TimeFormat.txt" />
     <None Include="Resources\bkg.png" />
     <None Include="Resources\bkgdark.png" />

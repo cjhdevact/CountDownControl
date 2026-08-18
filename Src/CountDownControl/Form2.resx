@@ -123,18 +123,10 @@
   <metadata name="ColorDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>145, 24</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="PictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1
-        MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAADrwAAA68AZW8ckkAAAB0SURBVDhPxZHBDYAgEAQpxxIs
-        zCrsyDos6AgPjM7tQowPSSaBCzt3gRIRhSzbEQrea6RCu7jup0RJUleGCKcZdu6L9SRwYbWnZBp2tVcC
-        nu8SKSCfBC78v+B6RPeNMx6CkURN0MNJ4CQMS8FMxKAVUOSCnQrTzrQDIfNlVgAAAABJRU5ErkJggg==
-</value>
-  </data>
   <metadata name="OpenFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>274, 24</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="PictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1
@@ -194,6 +186,14 @@
         /dKGbMATFh4zXb0tpadWYSp7bfZrC9ZLmO+dXC43EHzj859qSMF8Pt+HmtvV3gruxwrL14vIL27u73eG
         hoYGfyvwUBsaGlqaz+eLCIZxHMEQBWC7oJ3auVxuHX6m/T3/iobMyOVyy5CyuVwuQoEyPDwMKAuOe3Pu
         7wC471csbP8HmO8cGGyMto0AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="PictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1
+        MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAADrwAAA68AZW8ckkAAAB0SURBVDhPxZHBDYAgEAQpxxIs
+        zCrsyDos6AgPjM7tQowPSSaBCzt3gRIRhSzbEQrea6RCu7jup0RJUleGCKcZdu6L9SRwYbWnZBp2tVcC
+        nu8SKSCfBC78v+B6RPeNMx6CkURN0MNJ4CQMS8FMxKAVUOSCnQrTzrQDIfNlVgAAAABJRU5ErkJggg==
 </value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

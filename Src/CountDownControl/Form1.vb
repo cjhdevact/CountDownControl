@@ -1,6 +1,6 @@
 ﻿'****************************************************************************
 '    CountDownControl
-'    Copyright (C) 2024-2025 CJH.
+'    Copyright (C) 2024-2026 CJH.
 '
 '    This program is free software: you can redistribute it and/or modify
 '    it under the terms of the GNU General Public License as published by
@@ -28,6 +28,8 @@
 
 Imports Microsoft.Win32
 Imports System.Runtime.InteropServices
+Imports System.IO
+Imports System.Security.Cryptography
 
 Public Class Form1
     '在Alt+Tab中隐藏
@@ -341,10 +343,10 @@ Public Class Form1
         'End If
 
         If MySize = 0 Then
-    Dim aa As SizeF
-    Dim b As Graphics = Graphics.FromImage(New Bitmap(1, 1))
+            Dim aa As SizeF
+            Dim b As Graphics = Graphics.FromImage(New Bitmap(1, 1))
             aa = TextRenderer.MeasureText(Me.Label1.Text, Me.Label1.Font)
-    Dim c As Integer
+            Dim c As Integer
             If aa.Width <= 42 Then
                 Me.GetTimeFormSize(38, aa.Width + 8)
             ElseIf 400 <= aa.Width Then
@@ -355,7 +357,7 @@ Public Class Form1
             c = Me.Width - Me.CaW
             If Not (Me.SaveLoc = 1 And Me.IsBootV = 1) Then
                 If c <> 0 Then
-    'Me.Location = New Point(Me.Location.X + c / 2, Me.Location.Y)
+                    'Me.Location = New Point(Me.Location.X + c / 2, Me.Location.Y)
                     If Me.SaveLoc = 1 Then
                         If Me.UnSaveData = 0 Then
                             RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "TimeFormX", Me.Location.X, RegistryValueKind.DWord, "HKCU")
@@ -453,6 +455,7 @@ Public Class Form1
         Form2.Button8.Enabled = False
         Form2.CheckBox3.Enabled = False
         Form2.CheckBox4.Enabled = False
+        Form2.CheckBox5.Enabled = False
         Form2.TextBox3.Enabled = False
         Form2.TextBox4.Enabled = False
         Form2.Button9.Enabled = False
@@ -463,6 +466,62 @@ Public Class Form1
         Form2.Button5.Visible = False
         Form2.Label20.Text = "部分功能由于被管理员禁用而无法使用。"
     End Sub
+
+
+    '生成文件Hash函数
+    Public Function GetFileHash(ByVal filePath As String, ByVal hashType As String) As String
+        Dim hashAlgorithm As Security.Cryptography.HashAlgorithm = Nothing
+        Select Case hashType.ToUpper()
+            Case "MD5"
+                hashAlgorithm = MD5.Create()
+            Case "SHA1"
+                hashAlgorithm = SHA1.Create()
+            Case "SHA256"
+                hashAlgorithm = SHA256.Create()
+            Case Else
+                Throw New ArgumentException("Unsupported hash type.")
+        End Select
+
+        Using fileStream As FileStream = File.OpenRead(filePath)
+            Dim hashBytes = hashAlgorithm.ComputeHash(fileStream)
+            Return BitConverter.ToString(hashBytes).Replace("-", "").ToLower()
+        End Using
+    End Function
+    '<DllImport("kernel32.dll", SetLastError:=True)>
+    'Private Shared Function SetDllDirectory(ByVal lpPathName As String) As Boolean
+    'End Function
+    '<DllImport("TimeControl.UIAccess.dll", EntryPoint:="PrepareForUIAccess", CallingConvention:=CallingConvention.Cdecl)>
+    'Private Shared Function PrepareForUIAccess() As Integer
+    'End Function
+    ' DLL导入
+    <DllImport("CJH.UIAccessHelper.dll")>
+    Private Shared Function PrepareForUIAccess() As UInteger
+    End Function
+    <DllImport("CJH.UIAccessHelper.dll")>
+    Private Shared Function CheckUIAccessStatus() As Boolean
+    End Function
+    Private Const ERROR_SUCCESS As UInteger = 0
+
+    '该方法检测管理员身份在win8 .net framework 4.5测试下会导致程序崩溃
+    '如果使用该方法，建议手动以管理员身份运行或升级为 .net framework 4.5.1 以上版本
+    'Public Function IsAdministrator() As Boolean
+    '    Return New WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator)
+    'End Function 
+
+    '该方法检测管理员身份在win8 .net framework 4.5测试下如果开了UAC但不提示会导致程序崩溃，如果有UAC提示则正常显示
+    '如果使用该方法，建议手动以管理员身份运行或升级为 .net framework 4.5.1 以上版本
+    Public Function IsAdministrator() As Boolean
+        Try
+            Return IsUserAnAdmin()
+        Catch
+            Return False
+        End Try
+    End Function
+
+    <DllImport("shell32.dll")>
+    Private Shared Function IsUserAnAdmin() As Boolean
+    End Function
+
     Public Sub loaddef(ByVal sender As System.Object, ByVal e As System.EventArgs)
         NeedStillTopMost = 1
         '////////////////////////////////////////////////////////////////////////////////////
@@ -636,6 +695,10 @@ Public Class Form1
         'SetTimeFormSize(38, 120)
 
         'Get Color Settings
+
+        If IsAdministrator() = True Then
+            Form2.Text = "设置倒计时小工具（管理员）"
+        End If
 
         '////////////////////////////////////////////////////////////////////////////////////
         '//
@@ -851,6 +914,119 @@ Public Class Form1
             Dim myv As Integer
             Try
 
+                '////////////////////////////////////////////////////////////////////////////////////
+                '//
+                '//  是否启用UIAccess顶置读取
+                '//
+                '////////////////////////////////////////////////////////////////////////////////////
+                Dim SysBuild As Integer
+                Try
+                    Dim regKey As Microsoft.Win32.RegistryKey
+                    regKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\Microsoft\Windows NT\CurrentVersion")
+                    SysBuild = regKey.GetValue("CurrentBuild").ToString
+                    regKey.Close()
+                Catch ex As Exception
+                    SysBuild = Environment.OSVersion.Version.Build
+                End Try
+                'UIAccess提权在Win7及以下版本不需要
+                '在Win8.1及以上版本测试稳定运行
+                '在Win8 .net framework 4.5 4.5.1测试如果使用内置管理员提权
+                '使用.net获取管理员身份的方法后进行UIAccess提权100%崩溃
+                '使用系统api获取管理员身份的方法后进行UIAccess提权如果存在UAC弹窗（测试的是第2档）就正常
+                '如果不存在UAC弹窗（测试的是第4档）100%崩溃
+                '.net framework 4.5.2环境不稳定，有概率崩溃
+                '.net framework 4.6环境稳定运行
+                '如果在Win8使用建议升级.net framework版本到4.6及以上
+                'Windows 8 和 8.1 开机自启开始屏幕会覆盖住UAC窗口，导致开机自启UAC确认窗口最小化到任务栏，如果不确认UAC，操作程序会出现初始化Bug，建议关闭UAC提示使用
+                If SysBuild > 7601 Then
+                    Dim aaa As Integer = 0
+                    If (Not mykey Is Nothing) Then
+                        aaa = mykey.GetValue("GetUIAccess", -1)
+                        If aaa = -1 Then
+                            RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "GetUIAccess", 0, RegistryValueKind.DWord, "HKCU")
+                            aaa = 0
+                        ElseIf aaa > 1 Then
+                            RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "GetUIAccess", 0, RegistryValueKind.DWord, "HKCU")
+                            aaa = 0
+                        End If
+                    Else
+                        RegKeyModule.AddReg("Software\CJH\CountDownControl\Settings", "GetUIAccess", 0, RegistryValueKind.DWord, "HKCU")
+                        aaa = 0
+                    End If
+                    If aaa = 1 Then
+                        Form2.CheckBox5.Checked = True
+                    Else
+                        Form2.CheckBox5.Checked = False
+                    End If
+
+                    ' 检测并尝试提权
+                    If Form2.CheckBox5.Checked = True Then
+                        If Not IsAdministrator() Then
+                            Try
+                                Dim startInfo As New ProcessStartInfo() With {
+                                    .UseShellExecute = True,
+                                    .FileName = Application.ExecutablePath,
+                                    .Verb = "runas"
+                                }
+                                Process.Start(startInfo)
+                                Application.Exit()
+                            Catch
+                                'Form2.CheckBox5.Enabled = False
+                                'Form2.CheckBox5.Checked = False
+                            End Try
+                        Else
+
+                            Try
+                                'Dim targetPath As String = Path.Combine(Application.StartupPath, "uiaccess.dll")
+                                Dim targetPath As String = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "CJH.UIAccessHelper.dll")
+                                If File.Exists(targetPath) Then
+                                    Dim HashExt As String
+                                    HashExt = GetFileHash(targetPath, "SHA256")
+                                    If System.Environment.Is64BitProcess = True Then
+                                        If Not HashExt = "a35bf5aaabaa149e9975a96188f8d5d202fe7bb560507dab6a13295982cd5b44" Then
+                                            File.Delete(targetPath)
+                                            File.WriteAllBytes(targetPath, My.Resources.UIAccessHelper64)
+                                        End If
+                                    Else
+                                        If Not HashExt = "c133cb9cfcad5aeb608085d7eaacd1944804865ee242b2b7363f9259e28d9e0f" Then
+                                            File.Delete(targetPath)
+                                            File.WriteAllBytes(targetPath, My.Resources.UIAccessHelper)
+                                        End If
+                                    End If
+                                Else
+                                    If System.Environment.Is64BitProcess = True Then
+                                        File.WriteAllBytes(targetPath, My.Resources.UIAccessHelper64)
+                                    Else
+                                        File.WriteAllBytes(targetPath, My.Resources.UIAccessHelper)
+                                    End If
+                                End If
+
+                                'Dim hr As Integer = PrepareForUIAccess()
+                                ''Console.WriteLine(hr)
+
+                                'If hr <> 0 Then
+                                '    Throw New System.ComponentModel.Win32Exception(hr)
+                                'End If
+                                If Not CheckUIAccessStatus() Then
+                                    ' 如果没有UIAccess权限，尝试提升
+                                    Dim result = PrepareForUIAccess()
+                                    Dim hr As Integer
+                                    hr = CType(result, Integer)
+                                    If Not result = ERROR_SUCCESS Then
+                                        Throw New System.ComponentModel.Win32Exception(hr)
+                                    End If
+                                End If
+                            Catch ex As Exception
+                                MsgBox("获取 UIAccess 权限失败。" & vbCrLf & ex.ToString, MsgBoxStyle.Exclamation, "警告")
+                                Exit Try
+                            End Try
+                        End If
+                    End If
+                Else
+                    Form2.CheckBox5.Enabled = False
+                    Form2.CheckBox5.Checked = False
+                    Form2.CheckBox5.Text = "使用 UIAccess 权限顶置（当前系统不支持）"
+                End If
 
                 '////////////////////////////////////////////////////////////////////////////////////
                 '//
@@ -1821,6 +1997,14 @@ Public Class Form1
         Timer2.Interval = 600000
         NotifyIcon1.Visible = True
         NotifyIcon1.ShowBalloonTip(7000, "倒计时小工具", "倒计时小工具当前已隐藏到系统托盘，双击托盘图标或在设定的时间（10分钟）之后重新显示。", ToolTipIcon.Info)
+        Me.Hide()
+        Timer2.Enabled = True
+    End Sub
+
+    Private Sub h40m_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles h40m.Click
+        Timer2.Interval = 2400000
+        NotifyIcon1.Visible = True
+        NotifyIcon1.ShowBalloonTip(7000, "倒计时小工具", "倒计时小工具当前已隐藏到系统托盘，双击托盘图标或在设定的时间（40分钟）之后重新显示。", ToolTipIcon.Info)
         Me.Hide()
         Timer2.Enabled = True
     End Sub
