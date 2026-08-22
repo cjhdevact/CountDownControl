@@ -58,12 +58,6 @@ Key Type: md5RSA
 
 ![设置界面](Assets/SettingUI.png)
 
-## 开源说明
-
-在修改和由本仓库代码衍生的代码中需要说明“基于 CountDownControl 开发”。
-
-本程序基于 TimeControl 框架代码二次开发。
-
 ## 相关项目
 
 [TimeControl](https://github.com/cjhdevact/TimeControl) - 时钟小工具，在电脑上随时查看当前时间
@@ -77,6 +71,10 @@ Key Type: md5RSA
 [UIAccessHelper](https://github.com/cjhdevact/UIAccessHelper)
 
 ## 开源说明
+
+在修改和由本仓库代码衍生的代码中需要说明“基于 CountDownControl 开发”。
+
+本程序基于 TimeControl 框架代码二次开发。
 
 本项目基于 `GPLv3` 许可证开源，详情请参阅 [License](License) 文件。 
 
