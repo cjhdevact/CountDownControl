@@ -4,7 +4,7 @@
 
 /Tools/CountDownControl-Bin/
 
-/Tools/CountDownControl-Bin*
+/Tools/CountDownControl*-Bin*
 
 /Src/CountDownControl/bin/
 
